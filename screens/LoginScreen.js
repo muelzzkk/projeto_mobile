@@ -11,7 +11,7 @@ import {
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
 
-export default function LoginScreen({irParaCadastro}) {
+export default function LoginScreen({irParaCadastro, irParaHome}) {
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -26,6 +26,9 @@ export default function LoginScreen({irParaCadastro}) {
       "Formulário válido",
       "Login pronto para integração com o backend.",
     );
+
+    irParaHome();
+
   }
 
   return (

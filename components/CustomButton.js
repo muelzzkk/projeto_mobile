@@ -5,15 +5,12 @@ import {
   StyleSheet,
 } from 'react-native';
 
-interface CustomButtonProps {
-  title: string;
-  onPress: () => void;
-}
+
 
 export default function CustomButton({
   title,
   onPress,
-}: CustomButtonProps) {
+}) {
   return (
     <TouchableOpacity
       style={styles.button}

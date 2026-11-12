@@ -5,25 +5,11 @@ import {
   Text,
   TextInput,
   StyleSheet,
-  KeyboardTypeOptions,
   TouchableOpacity,
 } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
 
-type IconName = React.ComponentProps<
-  typeof Ionicons
->['name'];
-
-interface CustomInputProps {
-  label: string;
-  placeholder: string;
-  value: string;
-  onChangeText: (text: string) => void;
-  icon?: IconName;
-  secureTextEntry?: boolean;
-  keyboardType?: KeyboardTypeOptions;
-}
 
 export default function CustomInput({
   label,
@@ -33,7 +19,7 @@ export default function CustomInput({
   icon,
   secureTextEntry = false,
   keyboardType = 'default',
-}: CustomInputProps) {
+}) {
   const [mostrarSenha, setMostrarSenha] = useState(false);
 
   return (

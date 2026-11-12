@@ -7,13 +7,12 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
-import { useRouter } from "expo-router";
 
-import CustomInput from "@/components/CustomInput";
-import CustomButton from "@/components/CustomButton";
 
-export default function RegisterScreen() {
-  const router = useRouter();
+import CustomInput from "../components/CustomInput";
+import CustomButton from "../components/CustomButton";
+
+export default function RegisterScreen({irParaLogin}) {
 
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
@@ -114,7 +113,7 @@ export default function RegisterScreen() {
         <View style={styles.footer}>
           <Text style={styles.footerText}>Já tem uma conta? </Text>
 
-          <TouchableOpacity onPress={() => router.push("/login")}>
+          <TouchableOpacity onPress={irParaLogin}>
             <Text style={styles.link}>Entrar</Text>
           </TouchableOpacity>
         </View>

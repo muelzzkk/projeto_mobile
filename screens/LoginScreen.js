@@ -7,13 +7,11 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
-import { useRouter } from "expo-router";
 
-import CustomInput from "@/components/CustomInput";
-import CustomButton from "@/components/CustomButton";
+import CustomInput from "../components/CustomInput";
+import CustomButton from "../components/CustomButton";
 
-export default function LoginScreen() {
-  const router = useRouter();
+export default function LoginScreen({irParaCadastro}) {
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -83,7 +81,7 @@ export default function LoginScreen() {
         <View style={styles.footer}>
           <Text style={styles.footerText}>Não tem uma conta? </Text>
 
-          <TouchableOpacity onPress={() => router.replace("/")}>
+          <TouchableOpacity onPress={irParaCadastro}>
             <Text style={styles.link}>Cadastre-se</Text>
           </TouchableOpacity>
         </View>
@@ -101,6 +99,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: "center",
     paddingVertical: 20,
+    paddingBottom: 198,
   },
   content: {
     flexGrow: 1,
@@ -111,10 +110,9 @@ const styles = StyleSheet.create({
     paddingTop: 45,
     paddingBottom: 35,
     alignItems: "center",
-    width: "100%",
-  },
+    },
   logo: {
-    fontSize: 32,
+    fontSize: 30,
     fontWeight: "bold",
     color: "#FFFFFF",
   },
@@ -126,8 +124,10 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: "#FFFFFF",
     marginHorizontal: 20,
-    padding: 18,
+    marginTop: 20,
+    marginBottom: 20,
     borderRadius: 15,
+    padding: 18,
     elevation: 3,
   },
   title: {
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 14,
     color: "#657773",
-    marginBottom: 30,
+    marginBottom: 25,
   },
   forgotPassword: {
     alignSelf: "flex-end",
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   footer: {
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: 25,
+    marginTop: 15,
   },
   footerText: {
     color: "#657773",

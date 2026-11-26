@@ -9,9 +9,9 @@ import {
   Alert,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import ServiceCard from "../components/ServiceCard";
-import AppHeader from "../components/AppHeader";
-import RatingStars from "../components/RatingStars";
+import ServiceCard from '../components/professional/ServiceCard';
+import AppHeader from '../components/common/AppHeader';
+import RatingStars from '../components/common/RatingStars';
 
 export default function ProfessionalDetailsScreen({
   profissional,

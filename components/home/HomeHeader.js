@@ -1,4 +1,3 @@
-
 import {
   View,
   Text,
@@ -6,7 +5,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import CustomInput from './CustomInput';
+import CustomInput from '../common/CustomInput';
 
 export default function HomeHeader({
   nome = 'Maria Souza',

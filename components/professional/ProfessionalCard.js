@@ -1,4 +1,3 @@
-
 import {
   View,
   Text,
@@ -6,7 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-import RatingStars from './RatingStars';
+import RatingStars from '../common/RatingStars';
 
 export default function ProfessionalCard({
   profissional,

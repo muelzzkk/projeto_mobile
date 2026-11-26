@@ -9,8 +9,8 @@ import {
 } from "react-native";
 
 
-import CustomInput from "../components/CustomInput";
-import CustomButton from "../components/CustomButton";
+import CustomInput from "../components/common/CustomInput";
+import CustomButton from "../components/common/CustomButton";
 
 export default function RegisterScreen({irParaLogin}) {
 

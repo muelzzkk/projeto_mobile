@@ -1,4 +1,3 @@
-
 import {
   TouchableOpacity,
   Text,

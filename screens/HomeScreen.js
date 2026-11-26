@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Alert, ScrollView, StyleSheet, View } from "react-native";
 
-import HomeHeader from "../components/HomeHeader";
-import SectionHeader from "../components/SectionHeader";
-import CategoryCard from "../components/CategoryCard";
-import ProfessionalCard from "../components/ProfessionalCard";
+import HomeHeader from "../components/home/HomeHeader";
+import CategoryCard from "../components/home/CategoryCard";
+import SectionHeader from "../components/common/SectionHeader";
+import ProfessionalCard from "../components/professional/ProfessionalCard";
 
 const categorias = [
   { id: "1", name: "Beleza", icon: "cut-outline" },
@@ -51,7 +51,11 @@ const profissionais = [
   },
 ];
 
-export default function HomeScreen({ irParaPerfil, irParaDetalhes }) {
+export default function HomeScreen({
+  irParaPerfil,
+  irParaDetalhes,
+  irParaAgendamentos,
+}) {
   const [busca, setBusca] = useState("");
 
   return (
@@ -68,6 +72,12 @@ export default function HomeScreen({ irParaPerfil, irParaDetalhes }) {
       />
 
       <View style={styles.bodyContainer}>
+        <SectionHeader
+          title="Meus agendamentos"
+          actionText="Ver todos"
+          onAction={irParaAgendamentos}
+        />
+
         <SectionHeader title="Categorias" />
 
         <View style={styles.categoriesContainer}>

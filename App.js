@@ -12,6 +12,7 @@ import AppointmentsScreen from "./screens/AppointmentsScreen";
 import AppointmentDetailsScreen from "./screens/AppointmentDetailsScreen";
 import SearchScreen from "./screens/SearchScreen";
 import EditProfileScreen from "./screens/EditProfileScreen";
+import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
 
 export default function App() {
   const [telaAtual, setTelaAtual] = useState("login");
@@ -73,6 +74,7 @@ export default function App() {
         <LoginScreen
           irParaCadastro={() => setTelaAtual("cadastro")}
           irParaHome={() => setTelaAtual("home")}
+          irParaRecuperarSenha={() => setTelaAtual("recuperarSenha")}
         />
       )}
       {telaAtual === "cadastro" && (
@@ -172,6 +174,9 @@ export default function App() {
           irParaPerfil={() => setTelaAtual("perfil")}
           salvarPerfil={salvarPerfil}
         />
+      )}
+      {telaAtual === "recuperarSenha" && (
+        <ForgotPasswordScreen irParaLogin={() => setTelaAtual("login")} />
       )}
     </View>
   );

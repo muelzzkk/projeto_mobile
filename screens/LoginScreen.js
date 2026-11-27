@@ -11,8 +11,11 @@ import {
 import CustomInput from "../components/common/CustomInput";
 import CustomButton from "../components/common/CustomButton";
 
-export default function LoginScreen({irParaCadastro, irParaHome}) {
-
+export default function LoginScreen({
+  irParaCadastro,
+  irParaHome,
+  irParaRecuperarSenha,
+}) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
@@ -28,7 +31,6 @@ export default function LoginScreen({irParaCadastro, irParaHome}) {
     );
 
     irParaHome();
-
   }
 
   return (
@@ -66,16 +68,8 @@ export default function LoginScreen({irParaCadastro, irParaHome}) {
             secureTextEntry
           />
 
-          <TouchableOpacity
-            style={styles.forgotPassword}
-            onPress={() =>
-              Alert.alert(
-                "Em desenvolvimento",
-                "A recuperação de senha será implementada posteriormente.",
-              )
-            }
-          >
-            <Text style={styles.link}>Esqueceu sua senha?</Text>
+          <TouchableOpacity onPress={irParaRecuperarSenha}>
+            <Text style={styles.forgotPassword}>Esqueci minha senha</Text>
           </TouchableOpacity>
 
           <CustomButton title="Entrar" onPress={entrar} />
@@ -113,7 +107,7 @@ const styles = StyleSheet.create({
     paddingTop: 45,
     paddingBottom: 35,
     alignItems: "center",
-    },
+  },
   logo: {
     fontSize: 30,
     fontWeight: "bold",
@@ -145,7 +139,11 @@ const styles = StyleSheet.create({
     marginBottom: 25,
   },
   forgotPassword: {
-    alignSelf: "flex-end",
+    fontSize: 13,
+    fontWeight: "600",
+    color: "#0B3D37",
+    textAlign: "right",
+    marginTop: 5,
     marginBottom: 15,
   },
   link: {

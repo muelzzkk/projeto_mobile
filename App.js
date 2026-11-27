@@ -10,6 +10,7 @@ import BookingScreen from "./screens/BookingScreen";
 import BookingConfirmationScreen from "./screens/BookingConfirmationScreen";
 import AppointmentsScreen from "./screens/AppointmentsScreen";
 import AppointmentDetailsScreen from "./screens/AppointmentDetailsScreen";
+import SearchScreen from "./screens/SearchScreen";
 
 export default function App() {
   const [telaAtual, setTelaAtual] = useState("login");
@@ -22,6 +23,9 @@ export default function App() {
   const agendamentoSelecionado = agendamentos.find(
     (item) => item.id === agendamentoSelecionadoId,
   );
+  const [buscaInicial, setBuscaInicial] = useState("");
+  const [categoriaInicial, setCategoriaInicial] = useState("Todos");
+  const [origemDetalhes, setOrigemDetalhes] = useState("home");
 
   function cancelarAgendamento(id) {
     setAgendamentos((anteriores) =>
@@ -31,6 +35,18 @@ export default function App() {
           : agendamento,
       ),
     );
+  }
+
+  function abrirBusca(busca = "", categoria = "Todos") {
+    setBuscaInicial(busca);
+    setCategoriaInicial(categoria);
+    setTelaAtual("busca");
+  }
+
+  function abrirDetalhes(profissional, origem = "home") {
+    setProfissionalSelecionado(profissional);
+    setOrigemDetalhes(origem);
+    setTelaAtual("detalhes");
   }
 
   return (
@@ -48,11 +64,9 @@ export default function App() {
       {telaAtual === "home" && (
         <HomeScreen
           irParaPerfil={() => setTelaAtual("perfil")}
-          irParaDetalhes={(profissional) => {
-            setProfissionalSelecionado(profissional);
-            setTelaAtual("detalhes");
-          }}
+          irParaDetalhes={(profissional) => abrirDetalhes(profissional, "home")}
           irParaAgendamentos={() => setTelaAtual("meusAgendamentos")}
+          irParaBusca={abrirBusca}
         />
       )}
       {telaAtual === "perfil" && (
@@ -61,7 +75,7 @@ export default function App() {
       {telaAtual === "detalhes" && profissionalSelecionado && (
         <ProfessionalDetailsScreen
           profissional={profissionalSelecionado}
-          irParaHome={() => setTelaAtual("home")}
+          irParaHome={() => setTelaAtual(origemDetalhes)}
           irParaAgendamento={(servico) => {
             setServicoSelecionado(servico);
             setTelaAtual("agendamento");
@@ -116,6 +130,16 @@ export default function App() {
           agendamento={agendamentoSelecionado}
           irParaAgendamentos={() => setTelaAtual("meusAgendamentos")}
           cancelarAgendamento={cancelarAgendamento}
+        />
+      )}
+      {telaAtual === "busca" && (
+        <SearchScreen
+          buscaInicial={buscaInicial}
+          categoriaInicial={categoriaInicial}
+          irParaHome={() => setTelaAtual("home")}
+          irParaDetalhes={(profissional) =>
+            abrirDetalhes(profissional, "busca")
+          }
         />
       )}
     </View>

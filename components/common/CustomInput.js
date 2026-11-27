@@ -1,14 +1,13 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
   View,
   Text,
   TextInput,
   StyleSheet,
   TouchableOpacity,
-} from 'react-native';
+} from "react-native";
 
-import { Ionicons } from '@expo/vector-icons';
-
+import { Ionicons } from "@expo/vector-icons";
 
 export default function CustomInput({
   label,
@@ -17,7 +16,9 @@ export default function CustomInput({
   onChangeText,
   icon,
   secureTextEntry = false,
-  keyboardType = 'default',
+  keyboardType = "default",
+  onSubmitEditing,
+  returnKeyType = "done",
 }) {
   const [mostrarSenha, setMostrarSenha] = useState(false);
 
@@ -26,7 +27,6 @@ export default function CustomInput({
       <Text style={styles.label}>{label}</Text>
 
       <View style={styles.inputContainer}>
-
         {icon && (
           <Ionicons
             name={icon}
@@ -42,11 +42,11 @@ export default function CustomInput({
           placeholderTextColor="#71817F"
           value={value}
           onChangeText={onChangeText}
-          secureTextEntry={
-            secureTextEntry && !mostrarSenha
-          }
+          secureTextEntry={secureTextEntry && !mostrarSenha}
           keyboardType={keyboardType}
           autoCapitalize="none"
+          onSubmitEditing={onSubmitEditing}
+          returnKeyType={returnKeyType}
         />
 
         {secureTextEntry && (
@@ -55,21 +55,16 @@ export default function CustomInput({
             style={styles.eyeButton}
             accessibilityRole="button"
             accessibilityLabel={
-              mostrarSenha ? 'Ocultar senha' : 'Mostrar senha'
+              mostrarSenha ? "Ocultar senha" : "Mostrar senha"
             }
           >
             <Ionicons
-              name={
-                mostrarSenha
-                  ? 'eye-off-outline'
-                  : 'eye-outline'
-              }
+              name={mostrarSenha ? "eye-off-outline" : "eye-outline"}
               size={20}
               color="#657773"
             />
           </TouchableOpacity>
         )}
-
       </View>
     </View>
   );
@@ -82,18 +77,18 @@ const styles = StyleSheet.create({
 
   label: {
     fontSize: 13,
-    fontWeight: '600',
-    color: '#142522',
+    fontWeight: "600",
+    color: "#142522",
     marginBottom: 5,
   },
 
   inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     borderWidth: 1,
-    borderColor: '#E1E6E3',
+    borderColor: "#E1E6E3",
     borderRadius: 8,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: "#FFFFFF",
     height: 44,
   },
 
@@ -104,16 +99,16 @@ const styles = StyleSheet.create({
 
   input: {
     flex: 1,
-    height: '100%',
+    height: "100%",
     paddingHorizontal: 8,
     fontSize: 14,
-    color: '#142522',
+    color: "#142522",
   },
 
   eyeButton: {
     paddingHorizontal: 12,
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

@@ -9,6 +9,7 @@ import { profissionais } from "../data/profissionais";
 import { categorias } from "../data/categorias";
 
 export default function HomeScreen({
+  usuario,
   irParaPerfil,
   irParaDetalhes,
   irParaAgendamentos,
@@ -23,7 +24,7 @@ export default function HomeScreen({
       keyboardShouldPersistTaps="handled"
     >
       <HomeHeader
-        nome="Maria Souza"
+        nome={usuario.nome}
         busca={busca}
         setBusca={setBusca}
         irParaPerfil={irParaPerfil}

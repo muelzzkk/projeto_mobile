@@ -11,6 +11,7 @@ import BookingConfirmationScreen from "./screens/BookingConfirmationScreen";
 import AppointmentsScreen from "./screens/AppointmentsScreen";
 import AppointmentDetailsScreen from "./screens/AppointmentDetailsScreen";
 import SearchScreen from "./screens/SearchScreen";
+import EditProfileScreen from "./screens/EditProfileScreen";
 
 export default function App() {
   const [telaAtual, setTelaAtual] = useState("login");
@@ -26,6 +27,16 @@ export default function App() {
   const [buscaInicial, setBuscaInicial] = useState("");
   const [categoriaInicial, setCategoriaInicial] = useState("Todos");
   const [origemDetalhes, setOrigemDetalhes] = useState("home");
+
+  const [usuario, setUsuario] = useState({
+    id: 1,
+    nome: "Maria Souza",
+    email: "maria@email.com",
+    telefone: "",
+    cidade: "Belo Horizonte",
+    membroDesde: "Setembro de 2024",
+    imagem: null,
+  });
 
   function cancelarAgendamento(id) {
     setAgendamentos((anteriores) =>
@@ -49,6 +60,13 @@ export default function App() {
     setTelaAtual("detalhes");
   }
 
+  function salvarPerfil(usuarioAtualizado) {
+    setUsuario(usuarioAtualizado);
+    setTelaAtual("perfil");
+
+    Alert.alert("Sucesso!", "Perfil atualizado com sucesso.");
+  }
+
   return (
     <View style={styles.container}>
       {telaAtual === "login" && (
@@ -63,6 +81,7 @@ export default function App() {
       8081
       {telaAtual === "home" && (
         <HomeScreen
+          usuario={usuario}
           irParaPerfil={() => setTelaAtual("perfil")}
           irParaDetalhes={(profissional) => abrirDetalhes(profissional, "home")}
           irParaAgendamentos={() => setTelaAtual("meusAgendamentos")}
@@ -70,7 +89,12 @@ export default function App() {
         />
       )}
       {telaAtual === "perfil" && (
-        <ProfileScreen irParaHome={() => setTelaAtual("home")} />
+        <ProfileScreen
+          usuario={usuario}
+          irParaHome={() => setTelaAtual("home")}
+          irParaEditarPerfil={() => setTelaAtual("editarPerfil")}
+          sair={() => setTelaAtual("login")}
+        />
       )}
       {telaAtual === "detalhes" && profissionalSelecionado && (
         <ProfessionalDetailsScreen
@@ -140,6 +164,13 @@ export default function App() {
           irParaDetalhes={(profissional) =>
             abrirDetalhes(profissional, "busca")
           }
+        />
+      )}
+      {telaAtual === "editarPerfil" && (
+        <EditProfileScreen
+          usuario={usuario}
+          irParaPerfil={() => setTelaAtual("perfil")}
+          salvarPerfil={salvarPerfil}
         />
       )}
     </View>

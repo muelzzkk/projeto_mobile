@@ -8,8 +8,14 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import ProfileAvatar from "../components/profile/ProfileAvatar";
 
-export default function ProfileScreen({ irParaHome }) {
+export default function ProfileScreen({
+  usuario,
+  irParaHome,
+  irParaEditarPerfil,
+  sair,
+}) {
   return (
     <ScrollView
       style={styles.container}
@@ -28,22 +34,20 @@ export default function ProfileScreen({ irParaHome }) {
           </View>
 
           <TouchableOpacity
-            onPress={() => Alert.alert("Editar", "Editar perfil")}
+            style={styles.editButton}
+            onPress={irParaEditarPerfil}
           >
-            <Text style={styles.editText}>Editar perfil</Text>
+            <Ionicons name="create-outline" size={20} color="#0B3D37" />
+
+            <Text style={styles.editButtonText}>Editar perfil</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.profileInfoContainer}>
-          <Image
-            source={{
-              uri: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300",
-            }}
-            style={styles.profileAvatar}
-          />
+          <ProfileAvatar imagem={usuario.imagem} tamanho={90} />
           <View style={styles.profileTextInfo}>
-            <Text style={styles.profileName}>Maria Souza</Text>
-            <Text style={styles.profileLocation}>Belo Horizonte, MG</Text>
+            <Text style={styles.profileName}>{usuario.nome}</Text>
+            <Text style={styles.profileLocation}>{usuario.cidade}</Text>
             <Text style={styles.profileMemberSince}>
               Membro desde setembro de 2024
             </Text>
@@ -82,7 +86,7 @@ export default function ProfileScreen({ irParaHome }) {
           />
           <View>
             <Text style={styles.infoLabel}>E-mail</Text>
-            <Text style={styles.infoValue}>maria.souza@email.com</Text>
+            <Text style={styles.infoValue}>{usuario.email}</Text>
           </View>
         </View>
 
@@ -275,9 +279,11 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   profileLocation: {
-    fontSize: 13,
+    fontSize: 14,
     color: "#DCE8E5",
-    marginBottom: 2,
+    fontWeight: "500",
+    marginTop: 4,
+    marginBottom: 4,
   },
   profileMemberSince: {
     fontSize: 11,
@@ -357,6 +363,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "600",
     color: "#142522",
+    marginTop: 4,
   },
   postCard: {
     backgroundColor: "#FFFFFF",
@@ -473,5 +480,21 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: "#142522",
     fontStyle: "italic",
+  },
+  editButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+    borderWidth: 1,
+    borderColor: "#0B3D37",
+    borderRadius: 10,
+    padding: 12,
+    marginVertical: 15,
+  },
+  editButtonText: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#7cd0c6",
   },
 });
